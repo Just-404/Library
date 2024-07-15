@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body{
+    margin: 0;
+}
+html{
+    height: 100dvb;
+    font-family: 'Courier New', Courier, monospace;
+}
+body{
+    height: 100%;
+    background-image: url(images/library.jpg);
+    background-size: cover;
+    padding: 0 5rem;
+    display: grid;
+    grid-template-rows: 1fr 8fr min-content;
+}
+
+header{
+    background-color: rgba(65, 74, 82, 0.932);
+
+}
+main{
+    background-color: rgba(240, 248, 255, 0.812);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 10px;
+}
+.books{
+
+    background-color: red;
+}
+footer{
+    padding: 0.7rem;
+    background-color: rgba(65, 74, 82, 0.932);
+    text-align: center;
+    color:white;
+}
+footer a{
+    text-decoration: none;
+    color: rgb(25, 191, 206);
+}
+footer a:hover{
+    padding: 0.2rem;
+    background-color: rgb(38, 38, 37);
+
+}

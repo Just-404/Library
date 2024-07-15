@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <dialog>
+        <form action="#" method="#" id="books-info">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title">
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author">
+
+            <label for="num-pages">Pages:</label>
+            <input type="number" id="num-pages" name="pages" min="0">
+
+            <fieldset>
+                <legend>Read</legend>
+
+                <label for="yes">Yes</label>
+                <input type="radio" id="yes" name="yes-option" value="true">
+
+                <label for="no">No</label>
+                <input type="radio" id="no" name="no-option" value="false">
+            </fieldset>
+
+        </form>
+
+        <div class="form-btns">
+            <button type="submit" form="books-info" id="add-book-btn">Add</button>
+            <button id="cancel-book-btn">Cancel</button>
+
+        </div>
+    </dialog>
+    
+    <header>
+        <h1>Welcome to my library!</h1>
+        <button id="show-modal">Add New Book</button>
+
+    </header>
+    
+    <main>
+        <div class="books">
+            <p></p>
+        </div>
+        <div class="books">
+            <p></p>
+        </div>
+        <div class="books">
+            <p></p>
+        </div>
+        <div class="books">
+            <p></p>
+        </div>
+        <div class="books">
+            <p></p>
+        </div>
+        <div class="books">
+            <p></p>
+        </div>
+    </main>
+    <footer>
+        Photo by <a href="https://unsplash.com/@cadop?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mathew Schwartz</a> on <a href="https://unsplash.com/photos/building-interior-with-chandeliers-and-desks-onOdABjwC0M?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
+    </footer>
+</body>
+</html>
