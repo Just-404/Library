@@ -1,10 +1,9 @@
-*{
+*:not(dialog){
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-html, body{
-    margin: 0;
-}
 html{
     height: 100dvb;
     font-family: 'Courier New', Courier, monospace;
@@ -18,19 +17,44 @@ body{
     grid-template-rows: 1fr 8fr min-content;
 }
 
+dialog{
+    height: 500px;
+    border-radius: 5px;
+
+}
 header{
     background-color: rgba(65, 74, 82, 0.932);
+    display: grid;
+    place-items: center;
+    padding: 1rem 2rem;
+    gap: 1rem;
+}
+h1{
+    color: aliceblue;
+}
+
+#show-modal{
+    padding: 0.5rem;
+    background-color: rgb(246, 204, 152);
+    border-radius: 5px;
+    width: 150px;
+    font-size: 1rem;
+    justify-self: start;
+}
+#show-modal:hover{
+    background-color: rgba(210, 178, 139, 0.832);
 
 }
 main{
     background-color: rgba(240, 248, 255, 0.812);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
 }
 .books{
-
-    background-color: red;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: rgb(255, 255, 255);
 }
 footer{
     padding: 0.7rem;
