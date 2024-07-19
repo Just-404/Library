@@ -9,7 +9,7 @@
 </head>
 <body>
     <dialog>
-        <form action="#" method="dialog" id="books-info">
+        <form action="#" method="post" id="books-info">
             <ul>
                 <li>
                     <label for="title">Title:</label>
@@ -41,8 +41,9 @@
         </form>
 
         <div class="form-btns">
-            <button type="submit" form="books-info" id="add-book-btn">Add</button>
+            <button type="submit" form="books-info" id="add-book-btn" formmethod="dialog">Add</button>
             <button id="cancel-book-btn">Cancel</button>
+            <button type="reset" form="books-info">Clear</button>
 
         </div>
     </dialog>
@@ -54,24 +55,7 @@
     </header>
     
     <main>
-        <div class="books">
-            <p></p>
-        </div>
-        <div class="books">
-            <p></p>
-        </div>
-        <div class="books">
-            <p></p>
-        </div>
-        <div class="books">
-            <p></p>
-        </div>
-        <div class="books">
-            <p></p>
-        </div>
-        <div class="books">
-            <p></p>
-        </div>
+        
     </main>
     <footer>
         Photo by <a href="https://unsplash.com/@cadop?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mathew Schwartz</a> on <a href="https://unsplash.com/photos/building-interior-with-chandeliers-and-desks-onOdABjwC0M?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
