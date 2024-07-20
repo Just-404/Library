@@ -127,3 +127,13 @@ footer a:hover{
     background-color: rgb(38, 38, 37);
 
 }
+.del-button{
+    padding: 0.5rem;
+    background-color: rgb(246, 204, 152);
+    border-radius: 5px;
+    font-size: 1rem;
+    border-width: 1px;
+}
+.del-button:hover{
+    background-color: rgba(210, 178, 139, 0.832);
+}
