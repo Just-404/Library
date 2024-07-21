@@ -9,6 +9,14 @@ function Book(title, author, pages, read){
        const info = `${this.title}, ${this.author}, ${this.pages},` + (this.read === 'true'? "Yesss!" : "Not yet")
        return info.split(',');
     }
+    this.changeStatus = function(){
+        if(this.read == "true"){
+            this.read = "false";
+        }
+        else{
+            this.read = "true";
+        }
+    }
 }
 
 function addBookToLibrary(event){
@@ -53,26 +61,41 @@ function displayBookInfo(book){
 
     });  
 
-    const delDiv = document.createElement("div");
+    createBookBtns(bookCard);
+    
+
+}
+
+function createBookBtns(bookCard){
+    const btnsDiv = document.createElement("div");
     const delBtn = document.createElement("button");
-    delBtn.classList.add("del-button");
+    const statusBtn = document.createElement("button");
+
+    delBtn.classList.add("book-buttons");
     delBtn.textContent = "Delete";
 
-    
+    statusBtn.classList.add("book-buttons");
+    statusBtn.textContent = "Status <-->";
+
+    bookCard.appendChild(btnsDiv);
+    btnsDiv.appendChild(delBtn);
+    btnsDiv.appendChild(statusBtn);
+
     delBtn.addEventListener("click", (e) =>{
         
         let bookPos = e.target.closest("[data-book-position]");
         deleteBook(bookPos.dataset.bookPosition);
     });
 
+    statusBtn.addEventListener("click", (e) => {
+        let bookPos = e.target.closest("[data-book-position]");
+        changeReadStatus(bookPos);
+
+    })
+
     const booksPos = document.querySelectorAll('[data-book-position]')
     updateBookPosition(booksPos);
-    bookCard.appendChild(delDiv);
-    delDiv.appendChild(delBtn);
-    
-
 }
-
 function clear(){
     const reset = document.querySelector("button[type=reset]");
     reset.click();
@@ -85,9 +108,9 @@ function updateBookPosition(arr){
         book.setAttribute('data-book-position', idx);
     })
 }
-function deleteBook(bookIndex){
-    library.splice(bookIndex, 1); //fix delete
 
+function deleteBook(bookIndex){
+    library.splice(bookIndex, 1); 
 
     const del = document.querySelector(`[data-book-position="${bookIndex}"]`);  
     del.remove();
@@ -95,6 +118,16 @@ function deleteBook(bookIndex){
     const updateBookInfo = document.querySelectorAll("[data-book-position]");
     updateBookPosition(updateBookInfo);
     
+}
+
+function changeReadStatus(book){
+    const bookIndex = book.dataset.bookPosition
+    library[bookIndex].changeStatus();
+
+    const output = book.querySelector("div:nth-child(4) output");
+    
+    output.textContent = library[bookIndex].info().pop();
+
 }
 const submit = document.querySelector("#add-book-btn");
 
