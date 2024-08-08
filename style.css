@@ -13,8 +13,7 @@ body{
     background-image: url(images/library.jpg);
     background-size: cover;
     padding: 0 5rem;
-    display: grid;
-    grid-template-rows: 1fr 8fr min-content;
+
 }
 
 dialog{
@@ -88,13 +87,15 @@ h1{
 
 }
 main{
+    min-height: 100%;
     background-color: rgba(240, 248, 255, 0.812);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1rem;
     padding: 2rem;
 }
 .books{
+    height: 400px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: rgb(255, 255, 255);
     padding: 1.5rem;
@@ -113,6 +114,7 @@ main{
     font-size: 1em;
 }
 footer{
+    margin-bottom: 0;
     padding: 0.7rem;
     background-color: rgba(65, 74, 82, 0.932);
     text-align: center;
