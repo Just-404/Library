@@ -1,23 +1,58 @@
-const library = [];
+class library{
+    library = [];
 
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.info = function(){
-       const info = `${this.title}, ${this.author}, ${this.pages},` + (this.read === 'true'? "Yesss!" : "Not yet")
-       return info.split(',');
+    getBook(idx){
+        return this.library[idx];
     }
-    this.changeStatus = function(){
-        if(this.read == "true"){
-            this.read = "false";
-        }
-        else{
-            this.read = "true";
-        }
+
+    addBook(book){
+        this.library.push(book);
+    }
+
+    delBook(idx){
+        this.library.splice(idx, 1);
+    }
+
+}
+
+class Book{
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    info(){
+        const info = `${this.title}, ${this.author}, ${this.pages},` + (this.read === 'true'? "Yesss!" : "Not yet");
+        return info.split(',');
+    }
+
+    changeStatus(){
+        this.read === 'true' ? this.read = 'false' : this.read = 'true';
+    }
+
+    get readStatus(){
+        return this.info().pop(',');
     }
 }
+
+const myLibrary = new library;
+const submit = document.querySelector("#add-book-btn");
+
+submit.addEventListener("click", addBookToLibrary, false);
+
+const dialog = document.querySelector("dialog");
+const openDialog = document.querySelector("#show-modal");
+const closeDialog = document.querySelector("#cancel-book-btn");
+
+openDialog.addEventListener('click', (e) =>{
+    dialog.showModal();
+});
+
+closeDialog.addEventListener('click', (e)=>{
+    dialog.close();
+});
 
 function addBookToLibrary(event){
     const title = document.querySelector("#title").value;
@@ -26,7 +61,7 @@ function addBookToLibrary(event){
     const read = document.querySelector("input[name='read-option']:checked").value;
     
     const newBook = new Book(title, author, numPages, read);
-    library.push(newBook);
+    myLibrary.addBook(newBook);
 
     clear();
     displayBookInfo(newBook);
@@ -88,14 +123,15 @@ function createBookBtns(bookCard){
     });
 
     statusBtn.addEventListener("click", (e) => {
-        let bookPos = e.target.closest("[data-book-position]");
-        changeReadStatus(bookPos);
+        let book = e.target.closest("[data-book-position]");
+        changeReadStatus(book);
 
     })
 
     const booksPos = document.querySelectorAll('[data-book-position]')
     updateBookPosition(booksPos);
 }
+
 function clear(){
     const reset = document.querySelector("button[type=reset]");
     reset.click();
@@ -110,7 +146,7 @@ function updateBookPosition(arr){
 }
 
 function deleteBook(bookIndex){
-    library.splice(bookIndex, 1); 
+    myLibrary.delBook(bookIndex); 
 
     const del = document.querySelector(`[data-book-position="${bookIndex}"]`);  
     del.remove();
@@ -121,47 +157,32 @@ function deleteBook(bookIndex){
 }
 
 function changeReadStatus(book){
-    const bookIndex = book.dataset.bookPosition
-    library[bookIndex].changeStatus();
-
-    const output = book.querySelector("div:nth-child(4) output");
+    const bookIndex = book.dataset.bookPosition;
+    myLibrary.getBook(bookIndex).changeStatus();
     
-    output.textContent = library[bookIndex].info().pop();
+    const output = book.querySelector(".books div:nth-child(4) output");
+    
+    output.textContent = myLibrary.getBook(bookIndex).readStatus;
 
 }
-const submit = document.querySelector("#add-book-btn");
 
-
-submit.addEventListener("click", addBookToLibrary, false);
-
-const dialog = document.querySelector("dialog");
-const openDialog = document.querySelector("#show-modal");
-const closeDialog = document.querySelector("#cancel-book-btn");
-
-openDialog.addEventListener('click', (e) =>{
-    dialog.showModal();
-});
-
-closeDialog.addEventListener('click', (e)=>{
-    dialog.close();
-});
 
 //Default books:
 
 const book1 = new Book("The Lord Of The Rings", "J.R.R Tolkien", 1216, "false");
-library.push(book1);
+myLibrary.addBook(book1);
 displayBookInfo(book1);
 
 const book2 = new Book("Harry Potter and the Philosopher's Stone", "J. K. Rowling", 223, "false")
-library.push(book2)
+myLibrary.addBook(book2)
 displayBookInfo(book2);
 
 const book3 = new Book("Moby-Dick", "Herman Melville", 635, "false")
-library.push(book3)
+myLibrary.addBook(book3)
 displayBookInfo(book3);
 
 const book4 = new Book("Percy Jackson & the Olympians: The Lightning Thief", "Rick Riordan", 377, "false")
-library.push(book4)
+myLibrary.addBook(book4)
 displayBookInfo(book4);
 
 
